@@ -56,16 +56,23 @@ func main() {
 		ants()
 	case "clear":
 		clear()
+	case "rows":
+		rows()
+	case "mod2":
+		evenOdd()
+	case "alt":
+		redGreen()
 	default:
-		fmt.Println("supported subcommands: 'ants', 'clear'")
+		fmt.Println("supported subcommands: 'ants', 'clear', 'rows', 'mod2', 'alt'")
 	}
 }
 
 func ants() {
 	for true {
 		for i := range all {
-			all[i].Toggle()
-			time.Sleep(time.Second / 2)
+			all[i].High()
+			time.Sleep(time.Second / 5)
+			all[i].Low()
 		}
 	}
 }
@@ -73,5 +80,102 @@ func ants() {
 func clear() {
 	for i := range all {
 		all[i].Low()
+	}
+}
+
+func rows() {
+	// light up each row one at a time
+	for true {
+		for i := range bottom {
+			bottom[i].High()
+		}
+
+		time.Sleep(time.Second / 3)
+
+		for i := range bottom {
+			bottom[i].Low()
+		}
+
+		for i := range middle {
+			middle[i].High()
+		}
+
+		time.Sleep(time.Second / 3)
+
+		for i := range middle {
+			middle[i].Low()
+		}
+
+		for i := range top {
+			top[i].High()
+		}
+
+		time.Sleep(time.Second / 3)
+
+		for i := range top {
+			top[i].Low()
+		}
+
+		star.High()
+		time.Sleep(time.Second / 3)
+		star.Low()
+	}
+}
+
+func evenOdd() {
+	// light even LEDs then odd LEDs
+	// star stays lit
+	star.High()
+
+	for true {
+		for i := range all {
+			if i%2 == 0 && i != 10 {
+				all[i].High()
+				time.Sleep(time.Second / 5)
+			}
+		}
+
+		for i := range all {
+			if i%2 == 0 && i != 10 {
+				all[i].Low()
+			}
+		}
+
+		for i := range all {
+			if i%2 != 0 {
+				all[i].High()
+				time.Sleep(time.Second / 5)
+			}
+		}
+
+		for i := range all {
+			if i%2 != 0 {
+				all[i].Low()
+			}
+		}
+	}
+}
+
+func redGreen() {
+	red := []int{1, 3, 4, 6, 8}
+	green := []int{0, 2, 5, 7, 9}
+
+	star.High()
+	for true {
+		for _, n := range red {
+			all[n].High()
+		}
+		time.Sleep(time.Second / 3)
+		for _, n := range red {
+			all[n].Low()
+		}
+
+		for _, n := range green {
+			all[n].High()
+		}
+		time.Sleep(time.Second / 3)
+		for _, n := range green {
+			all[n].Low()
+		}
 	}
 }
