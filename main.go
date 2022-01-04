@@ -41,6 +41,8 @@ func main() {
 		os.Exit(1)
 	}
 
+	apiKey, keyYes := os.LookupEnv("XMAS_COINMARKETCAP_KEY")
+
 	if err := rpio.Open(); err != nil {
 		panic(err)
 	}
@@ -62,8 +64,14 @@ func main() {
 		evenOdd()
 	case "alt":
 		redGreen()
+	case "btc":
+		if keyYes {
+			btcMinute(apiKey)
+		} else {
+			fmt.Println("set environment variable XMAS_COINMARKETCAP_KEY")
+		}
 	default:
-		fmt.Println("supported subcommands: 'ants', 'clear', 'rows', 'mod2', 'alt'")
+		fmt.Println("supported subcommands: 'ants', 'clear', 'rows', 'mod2', 'alt', 'btc'")
 	}
 }
 
