@@ -42,3 +42,9 @@ Light one row at a time:
 ```shell-session
 $ ./mmpxmas-go rows
 ```
+
+Flash consistent green or red when BTC price is up or down minute-to-minute.
+
+```shell-session
+$ XMAS_COINMARKETCAP_KEY=your_key_here ./mmpxmas-go btc
+```
