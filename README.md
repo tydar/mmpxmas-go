@@ -1,7 +1,7 @@
 # ModMyPi Programmable Christmas Tree examples in Go
 
 
-This small program contains examples similar to the examples provided by [ModMyPi](https://github.com/modmypi/Programmable-Xmas-Tree) for interacting with the GPIO-controlled LED Christmas Tree. Tested with a Raspberry Pi Zero 2 W.
+This small program contains examples similar to the examples provided by [ModMyPi](https://github.com/modmypi/Programmable-Xmas-Tree) for interacting with the GPIO-controlled LED Christmas Tree. Tested with a Raspberry Pi Zero 2 W running 32-bit Raspbian Lite.
 
 ## Usage
 
@@ -24,4 +24,5 @@ Turn off all LEDs:
 ```shell-session
 $ ./mmpxmas clear
 ```
+
 
